@@ -15,4 +15,25 @@ int main() {
         double xi = x0 + i * otst;
         cout << sin(xi) / xi << endl;
     }
+
+    int a = 0;
+    int b = 1;
+    int MAX;
+    int t;
+    int R;
+    int S = 1;
+    int n = 2;
+
+
+    cin >> MAX;
+
+    while (S <= MAX) {
+        R = a + b;
+        a = b;
+        b = R;
+        S += R;
+        n += 1;
+    }
+
+    cout << n << ' ' << S << endl;
 }
