@@ -36,4 +36,47 @@ int main() {
     }
 
     cout << n << ' ' << S << endl;
+
+    double S;
+    double T;
+    double Proc_god;
+    double Proc_mes;
+    double Proc_mes_tec;
+    double Sum_Proc;
+    double Plat;
+    double S_tec;
+    double Dolg_tec;
+    double Sum_Pid;
+    double XX;
+
+    cin >> S;
+    cin >> T;
+    cin >> Proc_god;
+
+    Proc_mes = Proc_god / 12 / 100;
+
+    Plat = S * (Proc_mes * pow(1 + Proc_mes, T)) / (pow((1 + Proc_mes), T) - 1);
+    S_tec = S;
+
+    for (int i = 1; i <= T; i++) {
+        Proc_mes_tec = S_tec * Proc_mes;
+
+        Dolg_tec = Plat - Proc_mes_tec;
+
+        if (i == T) {
+            Dolg_tec = S_tec;
+            Plat = Dolg_tec + Proc_mes_tec;
+        }
+
+        XX = S_tec;
+
+        S_tec -= Dolg_tec;
+
+        Sum_Proc += Proc_mes_tec;
+
+
+        cout << i << '\t' << XX << "\t" << Proc_mes_tec << '\t' << Dolg_tec << endl;
+    }
+
+    cout << Sum_Proc << endl;
 }
