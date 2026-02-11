@@ -9,6 +9,12 @@ int main() {
     double otst;
     cin >> x0;
 
+    if (x0 <= 0 || x0 > 4) {
+        cout << "Не верные данные"; 
+        return 0;
+    }
+
+    
     otst = (4 - x0) / 9;
 
     for (int i = 0; i < 10; i++) {
