@@ -16,6 +16,8 @@ int main() {
         cout << sin(xi) / xi << endl;
     }
 
+    // Задание 2: Число.
+
     int a = 0;
     int b = 1;
     int MAX;
@@ -37,6 +39,8 @@ int main() {
 
     cout << n << ' ' << S << endl;
 
+    // Задание 3: Долг.
+
     double S;
     double T;
     double Proc_god;
@@ -46,8 +50,7 @@ int main() {
     double Plat;
     double S_tec;
     double Dolg_tec;
-    double Sum_Pid;
-    double XX;
+    double A;
 
     cin >> S;
     cin >> T;
@@ -55,28 +58,25 @@ int main() {
 
     Proc_mes = Proc_god / 12 / 100;
 
-    Plat = S * (Proc_mes * pow(1 + Proc_mes, T)) / (pow((1 + Proc_mes), T) - 1);
     S_tec = S;
 
-    for (int i = 1; i <= T; i++) {
+    A = S / T;
+
+    S_tec = S;
+
+    for (int i = 1; i <= 12; i++) {
         Proc_mes_tec = S_tec * Proc_mes;
-
-        Dolg_tec = Plat - Proc_mes_tec;
-
-        if (i == T) {
-            Dolg_tec = S_tec;
-            Plat = Dolg_tec + Proc_mes_tec;
-        }
-
-        XX = S_tec;
-
-        S_tec -= Dolg_tec;
-
         Sum_Proc += Proc_mes_tec;
+        Dolg_tec = S_tec + Proc_mes_tec;
 
+        Plat = Dolg_tec - (S - i * A);
 
-        cout << i << '\t' << XX << "\t" << Proc_mes_tec << '\t' << Dolg_tec << endl;
+        cout << i << '\t' << S_tec << '\t' << Proc_mes_tec << '\t' << Plat << endl;
+
+        S_tec = Dolg_tec - Plat;
+
     }
 
-    cout << Sum_Proc << endl;
+    cout << Sum_Proc;
+
 }
