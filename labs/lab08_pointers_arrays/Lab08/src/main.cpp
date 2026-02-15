@@ -4,17 +4,31 @@ using namespace std;
 int main() {
     // Статический массив
 
-    int arrS1[10];
+    //int arrS1[10];
 
-    for (int i = 0; i < 10; i++) {
-        arrS1[i] = i * i;
-    }
+    //for (int i = 0; i < 10; i++) {
+    //    arrS1[i] = i * i;
+    //}
 
-    for (int i = 0; i < 10; i++) {
-        cout << arrS1[i] << endl;
-    }
+    //for (int i = 0; i < 10; i++) {
+    //    cout << arrS1[i] << endl;
+    //}
 
     // -----------------------------
+
+
+    int arrS2[10];
+
+    int *pArr = arrS2;
+
+    for (int i = 0; i < 10; i++) {
+        *(pArr + i) = i * i;
+    }
+
+    for (int i = 0; i < 10; i++) {
+        cout << *(pArr + i) << endl;
+    }
+
 
     // Упражнение 4: линейный самоадресуемый список из 10 элементов.
     // TODO: сформируйте список и выведите элементы по порядку.
