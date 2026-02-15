@@ -16,18 +16,34 @@ int main() {
 
     // -----------------------------
 
+    //int arrS2[10];
 
-    int arrS2[10];
+    //int *pArr = arrS2;
 
-    int *pArr = arrS2;
+    //for (int i = 0; i < 10; i++) {
+    //    *(pArr + i) = i * i;
+    //}
 
-    for (int i = 0; i < 10; i++) {
-        *(pArr + i) = i * i;
+    //for (int i = 0; i < 10; i++) {
+    //    cout << *(pArr + i) << endl;
+    //}
+
+    // Динамический массив
+
+    int size = 10;
+    int *arrD1 = new int[size];
+
+    for (int i = 0; i < size; i++) {
+        arrD1[i] = i * i;
     }
 
-    for (int i = 0; i < 10; i++) {
-        cout << *(pArr + i) << endl;
+    for (int i = 0; i < size; i++) {
+        cout << arrD1[i] << endl;
     }
+
+    delete[] arrD1;
+
+    // -----------------------------
 
 
     // Упражнение 4: линейный самоадресуемый список из 10 элементов.
