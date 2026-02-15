@@ -1,7 +1,16 @@
 #include <iostream>
 using namespace std;
 
+struct List {
+    int data;     
+    List *prev;   
+    List *next;   
+};
+
 int main() {
+    setlocale(LC_ALL, "Russian");
+    // Задание 3
+    // 1)
     // Статический массив
 
     //int arrS1[10];
@@ -30,7 +39,7 @@ int main() {
 
     // Динамический массив
 
-    int size = 10;
+    //int size = 10;
     //int *arrD1 = new int[size];
 
     //for (int i = 0; i < size; i++) {
@@ -45,21 +54,56 @@ int main() {
 
     // -----------------------------
 
-    int *arrD2 = new int[size];
-    int *p;
-    p = arrD2;
+    //int *arrD2 = new int[size];
+    //int *p;
+    //p = arrD2;
 
-    for (int i = 0; i < size; i++) {
-        *(p + i) = i * i;
+    //for (int i = 0; i < size; i++) {
+    //    *(p + i) = i * i;
+    //}
+
+    //for (int i = 0; i < size; i++) {
+    //    cout << *(p + i) << endl;
+    //}
+
+    //delete[] arrD2;
+
+    // 2)
+
+
+    // Упражнение 4
+    
+    List *head = new List;
+    head->data = 1;
+    head->prev = nullptr;
+    head->next = nullptr;
+
+    List *current = head;
+
+    for (int i = 2; i <= 10; i++) {
+        List *newList = new List;
+        newList->data = i;
+        newList->prev = current;
+        newList->next = nullptr;
+
+        current->next = newList;
+        current = newList;
     }
 
-    for (int i = 0; i < size; i++) {
-        cout << *(p + i) << endl;
+    current = head;
+    while (current != nullptr) {
+        cout << "Item " << current->data << endl;
+        cout << "  Ip: " << current << endl;
+        cout << "  prev: " << current->prev << endl;
+        cout << "  next: " << current->next << endl << endl;
+        current = current->next;
     }
 
-    delete[] arrD2;
-
-    // Упражнение 4: линейный самоадресуемый список из 10 элементов.
-    // TODO: сформируйте список и выведите элементы по порядку.
-    return 0;
+    current = head;
+    List *next;
+    while (current != nullptr) {
+        next = current->next;
+        delete current;
+        current = next;
+    }
 }
