@@ -18,7 +18,16 @@ void zip(int* arr, int size, int* zarr) {
 }
 
 void razarchzip(int* arr, int size, int* zarr) {
-    return 0;
+    int s[18] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 };
+    int index = 0;
+    for (int i = 0; i < 18; i++) {
+        int cnt=0;
+        while (cnt < zarr[i]) {
+            arr[index] = s[i];
+            index++;
+            cnt++;
+        }
+    }
 }
 
 int main() {
@@ -26,15 +35,12 @@ int main() {
 
     cin >> size;
 
-    int* arr = new int[size];
+    int* arrstart = new int[size];
+    int* arrend = new int[size];
     int* zarr = new int[18];
 
     for (int i = 0; i < size; i++) {
-        arr[i] = rand() % (17 + 1);
-    }
-
-    for (int i = 0; i < size; i++) {
-        cout << arr[i] << "  ";
+        arrstart[i] = rand() % (17 + 1);
     }
 
     cout << endl;
@@ -43,33 +49,42 @@ int main() {
     {
         for (int j = (size - 1); j > i; j--) 
         {
-            if (arr[j - 1] > arr[j]) 
+            if (arrstart[j - 1] > arrstart[j]) 
             {
-                int temp = arr[j - 1]; 
-                arr[j - 1] = arr[j];
-                arr[j] = temp;
+                int temp = arrstart[j - 1];
+                arrstart[j - 1] = arrstart[j];
+                arrstart[j] = temp;
             }
         }
     }
 
     for (int i = 0; i < size; i++) {
-        cout << arr[i] << "  ";
+        cout << arrstart[i] << "  ";
     }
 
     cout << endl;
 
-    zip(arr, size, zarr);
+    zip(arrstart, size, zarr);
 
 
     for (int i = 0; i < 18; i++) {
         cout << zarr[i] << "  ";
     }
+    cout << endl;
 
-    razarchzip(arr, size, zarr);
+
+    razarchzip(arrend, size, zarr);
 
     cout << endl;
 
-    delete[] arr;
+    for (int i = 0; i < size; i++) {
+        cout << arrend[i] << "  ";
+    }
+
+    cout << endl;
+
+    delete[] arrstart;
+    delete[] arrend;
     delete[] zarr;
     return 0;
 }
