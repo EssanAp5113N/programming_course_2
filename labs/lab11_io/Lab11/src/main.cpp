@@ -1,13 +1,24 @@
 #include <iostream>
+#include <stdio.h>
+#include <string.h>
+using namespace std;
 
-// Lab 11
-// TODO: реализуйте решение по заданию в labs/lab11_io/README.md
-//
-// Рекомендация по выводу:
-// - без лишнего текста
-// - числа через пробел
-// - если несколько строк — в фиксированном порядке
 int main() {
-    // TODO
+    // Упражнение 1
+    int x;
+    char str[80];
+    cin >> x;
+    cout << x << endl;
+
+    scanf_s("%d", &x);
+    printf("%d", x);
+
+    // gets puts - усторевшее не безопастное
+    // fopen fclose - для работы с файлами
+    // fscanf fprintf - для работы с файлами
+    // EOF - обозначает конец файла
+
+    // Упражнение 2
+
     return 0;
 }

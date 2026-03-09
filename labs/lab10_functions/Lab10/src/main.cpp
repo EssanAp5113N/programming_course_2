@@ -59,7 +59,7 @@ int main() {
     }
 
     for (int i = 0; i < size; i++) {
-        cout << arrstart[i] << "  ";
+        cout << arrstart[i] << "";
     }
 
     cout << endl;
@@ -68,17 +68,16 @@ int main() {
 
 
     for (int i = 0; i < 18; i++) {
-        cout << zarr[i] << "  ";
+        cout << zarr[i] << " ";
     }
     cout << endl;
 
 
     razarchzip(arrend, size, zarr);
 
-    cout << endl;
 
     for (int i = 0; i < size; i++) {
-        cout << arrend[i] << "  ";
+        cout << arrend[i] << "";
     }
 
     cout << endl;
