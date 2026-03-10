@@ -13,5 +13,7 @@
   <ItemGroup>
     <Text Include="File1.txt" />
     <Text Include="File2.txt" />
+    <Text Include="t.txt" />
+    <Text Include="test1.txt" />
   </ItemGroup>
 </Project>

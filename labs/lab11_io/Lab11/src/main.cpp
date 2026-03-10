@@ -4,6 +4,8 @@
 #include <cstdio>
 #include <string.h>
 #include <vector>
+#include <fstream>
+#include <string>
 using namespace std;
 
 int main() {
@@ -18,35 +20,33 @@ int main() {
 
     //cout << endl;
 
-    // gets puts - усторевшее не безопастное
-    // fopen fclose - для работы с файлами
-    // fscanf fprintf - для работы с файлами
+    //FILE* f = fopen("t.txt", "w");
+    //fprintf(f, "%s", "test text");
+    //fclose(f);
+
+    // gets puts - усторевшее не безопастное (построчное чтение из файла)
     // EOF - обозначает конец файла
 
     // Упражнение 2
 
-    int word_count;
+    int word_count = 0;
     FILE* file1 = fopen("File1.txt", "w");
     FILE* file2 = fopen("File2.txt", "w");
+    ifstream test("test1.txt");
 
-    cin >> word_count;
+    vector<string> line;
 
-    if (word_count > 50 || word_count < 0) {
-        return 0;
-    }
-
-    vector<string> line(word_count);
-
-    for (int i = 0; i < word_count; i++) {
-        string l;
-        cin >> l;
-        if (l.length() > 25) {
-            return 0;
+    if (test.is_open()) {
+        string word;
+        while (getline(test, word)) {
+            line.push_back(word);
         }
-        line[i] = l;
+        test.close();
     }
 
-    vector<vector<string>> list(word_count);
+
+    word_count = line.size();
+    vector<vector<string>> list(line.size());
     
 
     for (int i = 0; i < word_count; i++) {
