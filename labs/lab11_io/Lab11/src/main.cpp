@@ -6,6 +6,7 @@
 #include <vector>
 #include <fstream>
 #include <string>
+#include <sstream>
 using namespace std;
 
 int main() {
@@ -37,10 +38,16 @@ int main() {
     vector<string> line;
 
     if (test.is_open()) {
+        string l;
         string word;
-        while (getline(test, word)) {
-            line.push_back(word);
+        
+        while (getline(test, l)) {
+            istringstream iss(l);
+            while (iss >> word) {
+                line.push_back(word);
+            }
         }
+
         test.close();
     }
 
@@ -58,7 +65,7 @@ int main() {
             }
         }
     }
-
+     
     int id_maxcnt = 0;
     int max_cnt = 0;
 
