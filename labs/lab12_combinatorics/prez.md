@@ -3,7 +3,10 @@ Here i try to do prezentaions
 ---
 
 ```cpp
-#include <iostream>
+#include <iostream>                         |Столбец 1|Столбец 2|Столбец 3|
+                                            |-|--------|---|
+                                            |Длинная запись в первом столбце|Запись в столбце 2|Запись в столбце 3|
+                                            |Кртк зпс| |Слева нет записи|
 using namespace std;
 
 const int n = 3;
