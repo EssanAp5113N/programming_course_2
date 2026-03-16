@@ -1,13 +1,36 @@
 #include <iostream>
+using namespace std;
 
-// Lab 12
-// TODO: реализуйте решение по заданию в labs/lab12_combinatorics/README.md
-//
-// Рекомендация по выводу:
-// - без лишнего текста
-// - числа через пробел
-// - если несколько строк — в фиксированном порядке
+
+const int n = 3;
+int P[n]; 
+int R[n];
+
+void per(int k) {
+    for (int i = 0; i < n; i++) {
+        if (R[i] == 0) {
+            P[k] = i + 1;
+            R[i] = 1;
+            if (k == n - 1) {
+                for (int j = 0; j < n; j++) {
+                    cout << P[j] << " ";
+                }
+                cout << endl;
+            }
+            else {
+                per(k + 1);
+            }
+            R[i] = 0;
+        }
+    }
+}
+
 int main() {
-    // TODO
+    for (int i = 0; i < n; i++) {
+        R[i] = 0;
+    }
+    
+    per(0);
+
     return 0;
 }
