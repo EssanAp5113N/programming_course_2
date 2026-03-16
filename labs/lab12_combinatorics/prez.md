@@ -1,7 +1,6 @@
 Here i try to do prezentaions
 
 ---
-
 ```cpp
 #include <iostream>
 using namespace std;
