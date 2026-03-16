@@ -378,3 +378,149 @@ int main() {
 |                         |           k: 1  ( per(1) )             |
 |                           |           i: 0  ( per(0) )            |
 |                        |           k: 0  ( per(0) )             |
+
+---
+per(2) -  сброс R[2] = 0, возрат в per(1)
+
+```cpp
+#include <iostream>
+using namespace std;
+
+const int n = 3;
+int P[n]; 
+int R[n];
+
+void per(int k) {
+    for (int i = 0; i < n; i++) {
+        if (R[i] == 0) {         
+            P[k] = i + 1;                      
+            R[i] = 1;                             
+            if (k == n - 1) {
+                for (int j = 0; j < n; j++) {            
+                    cout << P[j] << " ";                 
+                }
+                cout << endl;
+            }
+            else {
+                per(k + 1);    
+            }
+            R[i] = 0;      <------
+        }
+    }
+}
+
+int main() {
+    for (int i = 0; i < n; i++) {
+        R[i] = 0;
+    }
+    
+    per(0);                  
+
+    return 0;
+}
+```
+
+|    Статическая память    |    Диномическая память    |
+|    ------------------    |    -------------------    |  
+|   P: [1, 2, 3]           |        i: 1  ( per(1) )   |
+|   R: [1, 1, 0]           |        k: 1  ( per(1) )   |
+|                          |        i: 0  ( per(0) )   |
+|                          |        k: 0  ( per(0) )   |
+
+---
+per(1) -  сброс R[1] = 0, i: 2 (продолжение цикла), вызов per(2)
+
+```cpp
+#include <iostream>
+using namespace std;
+
+const int n = 3;
+int P[n]; 
+int R[n];
+
+void per(int k) {
+    for (int i = 0; i < n; i++) {
+        if (R[i] == 0) {         
+            P[k] = i + 1;           |     <-----            
+            R[i] = 1;               |     <-----               
+            if (k == n - 1) {
+                for (int j = 0; j < n; j++) {            
+                    cout << P[j] << " ";                 
+                }
+                cout << endl;
+            }
+            else {
+                per(k + 1);    <-----  
+            }
+            R[i] = 0;      
+        }
+    }
+}
+
+int main() {
+    for (int i = 0; i < n; i++) {
+        R[i] = 0;
+    }
+    
+    per(0);                  
+
+    return 0;
+}
+```
+
+|    Статическая память    |    Диномическая память    |
+|    ------------------    |    -------------------    |  
+|   P: [1, 3, 3]           |        i: 1 -> i: 2 ( per(1) )   |
+|   R: [1, 0, 1]           |        k: 1  ( per(1) )   |
+|                          |        i: 0  ( per(0) )   |
+|                          |        k: 0  ( per(0) )   |
+
+---
+per(2) - проверка R[0] == 0, проверка R[1] == 0, проверка k == n-1, ВЫВОД перестановки "1 3 2"
+
+```cpp
+#include <iostream>
+using namespace std;
+
+const int n = 3;
+int P[n]; 
+int R[n];
+
+void per(int k) {
+    for (int i = 0; i < n; i++) {
+        if (R[i] == 0) {         
+            P[k] = i + 1;           |     <-----            
+            R[i] = 1;               |     <-----               
+            if (k == n - 1) {
+                for (int j = 0; j < n; j++) {        |     <-----     
+                    cout << P[j] << " ";             |     <-----     
+                }
+                cout << endl;
+            }
+            else {
+                per(k + 1);   
+            }
+            R[i] = 0;      
+        }
+    }
+}
+
+int main() {
+    for (int i = 0; i < n; i++) {
+        R[i] = 0;
+    }
+    
+    per(0);                  
+
+    return 0;
+}
+```
+
+|    Статическая память    |    Диномическая память    |
+|    ------------------    |    -------------------    |  
+|   P: [1, 3, 2]           |        i: 0  -> i: 1 [R[0] != 0]  ( per(2) )    |
+|   R: [1, 1, 1]           |        k: 2  ( per(2) )   |
+|                          |        i: 2  ( per(1) )   |
+|                          |        k: 1  ( per(1) )   |
+|                          |        i: 0  ( per(0) )   |
+|                          |        k: 0  ( per(0) )   |
