@@ -1,5 +1,7 @@
 Призентация
 ---
+До начала работы
+
 ```cpp
 #include <iostream>
 using namespace std;
@@ -43,6 +45,7 @@ int main() {
 |                          |                           |
 
 ---
+Вход в main(), инициализация,  per(0) - начало цикла
 
 ```cpp
 #include <iostream>
@@ -89,6 +92,8 @@ int main() {
 
 ---
 
+per(0) - проверка R[0] == 0
+
 ```cpp
 #include <iostream>
 using namespace std;
@@ -133,6 +138,7 @@ int main() {
 |   R: [1, 0, 0]          |           k: 0  ( per(0) )             |
 
 ---
+ per(0) - вызов per(1)
 
 ```cpp
 #include <iostream>
@@ -178,6 +184,7 @@ int main() {
 |   R: [1, 0, 0]          |           k: 0  ( per(0) )             |
 
 ---
+per(1) - проверка R[0] == 0, проверка R[1] == 0
 
 ```cpp
 #include <iostream>
