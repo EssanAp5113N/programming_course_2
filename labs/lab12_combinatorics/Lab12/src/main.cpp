@@ -10,59 +10,82 @@ int* R;
 
 int n, ch;
 
-bool isSafeFullCheck(vector<vector<int>>& board, int K) {
-    for (int i = 0; i < K; i++) {
-        for (int j = 0; j < K; j++) {
-            if (board[i][j] == 1) {
-                for (int c = 0; c < K; c++) {
-                    if (c != j && board[i][c] == 1) return false;
-                }
-                for (int r = 0; r < K; r++) {
-                    if (r != i && board[r][j] == 1) return false;
-                }
-                for (int d = 1; d < K; d++) {
-                    if (i + d < K && j + d < K && board[i + d][j + d] == 1) return false;
-                    if (i + d < K && j - d >= 0 && board[i + d][j - d] == 1) return false;
-                    if (i - d >= 0 && j + d < K && board[i - d][j + d] == 1) return false;
-                    if (i - d >= 0 && j - d >= 0 && board[i - d][j - d] == 1) return false;
-                }
-            }
-        }
-    }
-    return true;
-}
+int solutionsCount = 0;
 
-void generateAllConfigurations(vector<vector<int>>& board, int row, int K, int& count) {
+void placeQueens(vector<vector<int>>& board, int row, int K) {
     if (row == K) {
-        if (isSafeFullCheck(board, K)) {
-            count++;
-            cout << "Var " << count << ":\n";
-            for (int i = 0; i < K; i++) {
-                for (int j = 0; j < K; j++) {
-                    if (board[i][j] == 1)
-                        cout << "Q ";
-                    else
-                        cout << ". ";
-                }
-                cout << endl;
+        solutionsCount++;
+        cout << "Var " << solutionsCount << ":\n";
+        for (int i = 0; i < K; ++i) {
+            for (int j = 0; j < K; ++j) {
+                if (board[i][j] == -1)
+                    cout << "Q ";
+                else
+                    cout << ". ";
             }
             cout << endl;
         }
+        cout << endl;
         return;
     }
 
-    for (int col = 0; col < K; col++) {
-        board[row][col] = 1;
-        generateAllConfigurations(board, row + 1, K, count);
-        board[row][col] = 0;
-    }
-}
+    for (int col = 0; col < K; ++col) {
+        if (board[row][col] == 0) {
+            board[row][col] = -1;
 
-void Met(int K) {
-    vector<vector<int>> board(K, vector<int>(K, 0));
-    int count = 0;
-    generateAllConfigurations(board, 0, K, count);
-    cout << count << "\n";
+            for (int j = 0; j < K; ++j) {
+                if (j != col)
+                    board[row][j] += 1;
+            }
+
+            for (int i = 0; i < K; ++i) {
+                if (i != row)
+                    board[i][col] += 1;
+            }
+
+            for (int i = 1; i < K; ++i) {
+                if (row + i < K && col + i < K)
+                    board[row + i][col + i] += 1;
+                if (row - i >= 0 && col - i >= 0)
+                    board[row - i][col - i] += 1;
+            }
+
+            for (int i = 1; i < K; ++i) {
+                if (row + i < K && col - i >= 0)
+                    board[row + i][col - i] += 1;
+                if (row - i >= 0 && col + i < K)
+                    board[row - i][col + i] += 1;
+            }
+
+            placeQueens(board, row + 1, K);
+
+            board[row][col] = 0;
+
+            for (int j = 0; j < K; ++j) {
+                if (j != col)
+                    board[row][j] -= 1;
+            }
+
+            for (int i = 0; i < K; ++i) {
+                if (i != row)
+                    board[i][col] -= 1;
+            }
+
+            for (int i = 1; i < K; ++i) {
+                if (row + i < K && col + i < K)
+                    board[row + i][col + i] -= 1;
+                if (row - i >= 0 && col - i >= 0)
+                    board[row - i][col - i] -= 1;
+            }
+
+            for (int i = 1; i < K; ++i) {
+                if (row + i < K && col - i >= 0)
+                    board[row + i][col - i] -= 1;
+                if (row - i >= 0 && col + i < K)
+                    board[row - i][col + i] -= 1;
+            }
+        }
+    }
 }
 
 void Queen(int j) {
@@ -99,6 +122,7 @@ void main() {
 	R = new int[2 * n - 1];
 	L = new int[2 * n - 1];
 
+    vector<vector<int>> board(n, vector<int>(n, 0));
 	for (int i = 0; i < n; i++) {
 		S[i] = 0;
 	}
@@ -114,9 +138,9 @@ void main() {
 
 	ch = 0;
 	Queen(0);
-	Met(n);
+    placeQueens(board, 0, n);
 
-	cout << "Всего решений: " << ch << endl;
+	cout << "Colich: " << ch << endl;
 
 
 	delete[] S;
