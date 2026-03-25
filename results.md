@@ -7,7 +7,7 @@
 | Ильин| |  | 2 |  |  | 2 |  |  |  |  |  |  |  |  |  |  |  |  |
 |[Карташов](https://github.com/Joziazf/programming_course_2)|4 | 3 | 2 |3  | 2 |2  |  | 7 | 11 |  |  |  |  |  |  |  |  |  |
 |  [Коджебаш](https://github.com/mrbellskiy57/programming_course_2)| 2| 3 | 2 |  |  | 2 |.  | 7 |  |  |  |  |  |  |  |  |  |  |
-|  [Левичев](https://github.com/MynameMumba/programming_course_2)| | 3 |2  | 3 | 2 | 2 | . |  | 11 |  |  |  |  |  |  |  |  |  |
+|  [Левичев](https://github.com/MynameMumba/programming_course_2)| | 3 |2  | 3 | 2 | 2 | . | 7| 11 |  |  |  |  |  |  |  |  |  |
 |  [Лютенко](https://github.com/neketlut-netizen/programming_course)|4 |  | 2 |  |  2| 2 | 8 |7  |  |  |  |  |  |  |  |  |  |  |
 |  Медведев|2 | 3 | 2 |  | 2 | 2 |8  |  |  |  |  |  |  |  |  |  |  |  |
 |  [Однорал](https://github.com/M1aRS/programming_course_2_932503_odnoral)| 4| 3 | 2 |  3| 2 | 2 | . | 7 | 11 |  |  |  |  |  |  |  |  |  |
