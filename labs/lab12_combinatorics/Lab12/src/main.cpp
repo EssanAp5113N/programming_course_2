@@ -15,17 +15,17 @@ int solutionsCount = 0;
 void placeQueens(vector<vector<int>>& board, int row, int K) {
     if (row == K) {
         solutionsCount++;
-        cout << "Var " << solutionsCount << ":\n";
-        for (int i = 0; i < K; ++i) {
-            for (int j = 0; j < K; ++j) {
-                if (board[i][j] == -1)
-                    cout << "Q ";
-                else
-                    cout << ". ";
-            }
-            cout << endl;
-        }
-        cout << endl;
+    //    cout << "Var " << solutionsCount << ":\n";
+    //    for (int i = 0; i < K; ++i) {
+    //        for (int j = 0; j < K; ++j) {
+    //            if (board[i][j] == -1)
+    //                cout << "Q ";
+    //            else
+    //                cout << ". ";
+    //        }
+    //        cout << endl;
+    //    }
+    //    cout << endl;
         return;
     }
 
@@ -97,10 +97,10 @@ void Queen(int j) {
 			Q[j] = i;
 			if (j == n - 1) {
 				ch++;
-				for (int k = 0; k < n; k++) {
-					cout << Q[k] + 1 << " ";
-				}
-				cout << endl;
+				//for (int k = 0; k < n; k++) {
+				//	cout << Q[k] + 1 << " ";
+				//}
+				//cout << endl;
 			}
 			else {
 				Queen(j + 1);
@@ -138,6 +138,7 @@ void main() {
 
 	ch = 0;
 	Queen(0);
+    cout << ch << endl;
     placeQueens(board, 0, n);
 
 	cout << "Colich: " << ch << endl;
