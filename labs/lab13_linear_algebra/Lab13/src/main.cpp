@@ -3,6 +3,8 @@
 #include <math.h>
 using namespace std;
 
+// Проверка создания ветки
+
 float eps = 0.000001;
 int systema(int m, int n, float** A) {
     int i, j, k, v;
