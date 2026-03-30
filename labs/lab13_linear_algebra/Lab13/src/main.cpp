@@ -6,7 +6,7 @@ using namespace std;
 // Проверка создания ветки Повторная проверка
 
 float eps = 0.000001;
-int systema(int m, int n, float** A) {
+int systema(int m, int n, float** A, float* X) {
     int i, j, k, v;
     float c;
 
@@ -45,17 +45,22 @@ int systema(int m, int n, float** A) {
                 A[k][i] = 0;
             }
         }
+
+        for (i = 0; i < n; i++) {
+            X[i] = A[i][n] / A[i][i];
+        }
     }
     return 1;
 }
 
 int main() {
     int i, j, g, n, m;
-    float **A;
+    float **A, *X;
     ifstream fin("Test.txt");
     ofstream fout("output.txt");
 
     fin >> m >> n;
+    X = new float[n];
     A = new float* [m];
 
     for (i = 0; i < m; i++) {
@@ -66,7 +71,7 @@ int main() {
     }
     fin.close();
 
-    g = systema(m, n, A);
+    g = systema(m, n, A, X);
     if (g) {
             for (i = 0; i < m; i++)
             {
