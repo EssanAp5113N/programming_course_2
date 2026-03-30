@@ -37,6 +37,14 @@ int systema(int m, int n, float** A) {
                 }
             }
         }
+
+        for (i = n - 1; i >= 1; i--) {
+            for (k = 0; k < i - 1; k++) {
+                c = A[k][i] / A[i][i];
+                A[k][n] -= c * A[i][n];
+                A[k][i] = 0;
+            }
+        }
     }
     return 1;
 }
