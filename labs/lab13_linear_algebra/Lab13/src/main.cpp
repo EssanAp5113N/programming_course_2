@@ -27,34 +27,15 @@ int systema(int m, int n, float** A) {
             }
         }
 
-        c = A[i][i];
-        for (j = i; j <= n; j++)
-        {
-            A[i][j] = A[i][j] / c;
-        }
-
-        for (k = i + 1; k < m; k++)
-        {
-            c = A[k][i];
-            if (abs(c) > eps)
-            {
-                for (j = i; j <= n; j++)
-                {
-                    A[k][j] = A[k][j] - c * A[i][j];
+        for (k = i + 1; k < m; k++) {
+            c = A[k][i] / A[i][i];
+            if (fabs(c) > eps) {
+                for (j = i; j <= n; j++) {
+                    A[k][j] -= c * A[i][j];
                 }
             }
         }
     }
-
-    if (fabs(A[m - 1][n - 1]) > eps)
-    {
-        c = A[m - 1][n - 1];
-        for (j = n - 1; j <= n; j++)
-        {
-            A[m - 1][j] = A[m - 1][j] / c;
-        }
-    }
-
     return 1;
 }
 
