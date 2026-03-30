@@ -19,7 +19,7 @@ int systema(int m, int n, float** A, float* X) {
         }
 
         if (fabs(A[v][i]) < eps)
-            continue;
+            return 0;
 
         if (v != i) {
             for (j = i; j <= n; j++) {
@@ -37,18 +37,18 @@ int systema(int m, int n, float** A, float* X) {
                 }
             }
         }
+    }
 
-        for (i = n - 1; i >= 1; i--) {
-            for (k = 0; k < i - 1; k++) {
-                c = A[k][i] / A[i][i];
-                A[k][n] -= c * A[i][n];
-                A[k][i] = 0;
-            }
+    for (i = n - 1; i >= 0; i--) {
+        for (k = 0; k < i; k++) {
+            c = A[k][i] / A[i][i];
+            A[k][n] -= c * A[i][n];
+            A[k][i] = 0;
         }
+    }
 
-        for (i = 0; i < n; i++) {
-            X[i] = A[i][n] / A[i][i];
-        }
+    for (i = 0; i < n; i++) {
+        X[i] = A[i][n] / A[i][i];
     }
     return 1;
 }
@@ -75,12 +75,9 @@ int main() {
     if (g) {
             for (i = 0; i < m; i++)
             {
-                for (j = 0; j <= n; j++)
-                {
-                    fout << A[i][j] << "\t";
-                }
-                fout << endl;
+                fout << X[i] << "\t";
             }
+            fout << endl;
     }
     else {
         printf("ERROR\n");
