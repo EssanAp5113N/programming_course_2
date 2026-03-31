@@ -60,6 +60,17 @@ int main() {
     ofstream fout("output.txt");
 
     fin >> m >> n;
+
+    if (m > n) {
+        fout << "Система не имеет решения";
+        return 0;
+    }
+
+    if (m < n) {
+        fout << "Система имеет бесконечное число решений";
+        return 0;
+    }
+
     X = new float[n];
     A = new float* [m];
 
@@ -80,6 +91,7 @@ int main() {
             fout << endl;
     }
     else {
+        fout << "Система не имеет решения";
         printf("ERROR\n");
     }
 
