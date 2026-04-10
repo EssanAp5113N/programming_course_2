@@ -5,12 +5,12 @@ using namespace std;
 
 // Проверка создания ветки Повторная проверка
 
-float eps = 0.000001;
+float eps = 1e-9;
 int systema(int m, int n, float** A, float* X) {
     int i, j, k, v;
     float c;
 
-    for (i = 0; i < m; i++) {
+    for (i = 0; i < m && i < n; i++) {
         v = i;
         for (j = i + 1; j < m; j++) {
             if (abs(A[j][i]) > abs(A[v][i])) {
@@ -88,16 +88,6 @@ int main() {
 
     fin >> m >> n;
 
-    if (m > n) {
-        fout << "Система не имеет решения";
-        return 0;
-    }
-
-    if (m < n) {
-        fout << "Система имеет бесконечное число решений";
-        return 0;
-    }
-
     X = new float[n];
     A = new float* [m];
 
@@ -112,7 +102,7 @@ int main() {
     g = systema(m, n, A, X);
 
     if (g == 1) {
-            for (i = 0; i < m; i++)
+            for (i = 0; i < n; i++)
             {
                 fout << X[i] << "\t";
             }
@@ -131,5 +121,6 @@ int main() {
         delete[] A[i];
     }
     delete[] A;
+    delete[] X;
    
 }
