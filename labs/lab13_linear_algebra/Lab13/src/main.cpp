@@ -19,7 +19,7 @@ int systema(int m, int n, float** A, float* X) {
         }
 
         if (fabs(A[v][i]) < eps)
-            return 0;
+            continue;
 
         if (v != i) {
             for (j = i; j <= n; j++) {
@@ -30,6 +30,7 @@ int systema(int m, int n, float** A, float* X) {
         }
 
         for (k = i + 1; k < m; k++) {
+            if (fabs(A[i][i]) < eps) continue;
             c = A[k][i] / A[i][i];
             if (fabs(c) > eps) {
                 for (j = i; j <= n; j++) {
@@ -37,6 +38,32 @@ int systema(int m, int n, float** A, float* X) {
                 }
             }
         }
+    }
+
+    for (i = 0; i < m; i++) {
+        bool all_zero = true;
+        for (j = 0; j < n; j++) {
+            if (fabs(A[i][j]) > eps) {
+                all_zero = false;
+                break;
+            }
+        }
+        if (all_zero && fabs(A[i][n]) > eps) {
+            return -1;
+        }
+    }
+
+    int rank = 0;
+    for (i = 0; i < m; i++) {
+        for (j = 0; j < n; j++) {
+            if (fabs(A[i][j]) > eps) {
+                rank++;
+                break;
+            }
+        }
+    }
+    if (rank < n) {
+        return 0;  
     }
 
     for (i = n - 1; i >= 0; i--) {
@@ -83,16 +110,19 @@ int main() {
     fin.close();
 
     g = systema(m, n, A, X);
-    if (g) {
+
+    if (g == 1) {
             for (i = 0; i < m; i++)
             {
                 fout << X[i] << "\t";
             }
             fout << endl;
     }
-    else {
-        fout << "Система не имеет решения";
-        printf("ERROR\n");
+    else if (g == -1) {
+        fout << "Система НЕСОВМЕСТНА" << endl;
+    }
+    else if (g == 0) {
+        fout << "Система имеет бесконечное число решений" << endl;
     }
 
     fout.close();
