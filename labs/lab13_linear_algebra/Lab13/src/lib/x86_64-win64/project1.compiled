@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <Compiler Value="C:\lazarus\fpc\3.2.2\bin\x86_64-win64\fpc.exe" Date="1525897257"/>
+  <Params Value="-MObjFPC -Scghi -O1 -gw3 -gl -WG -l -vewnhibq -FiC:\Users\Sabit\source\repos\EssanAp5113N\programming_course_2\labs\lab13_linear_algebra\Lab13\src\lib\x86_64-win64 -FuC:\Users\Sabit\source\repos\EssanAp5113N\programming_course_2\labs\lab13_linear_algebra\Lab13\src\ -FuC:\lazarus\lcl\units\x86_64-win64\win32 -FuC:\lazarus\lcl\units\x86_64-win64 -FuC:\lazarus\components\freetype\lib\x86_64-win64 -FuC:\lazarus\components\lazutils\lib\x86_64-win64 -FuC:\lazarus\packager\units\x86_64-win64 -FUC:\Users\Sabit\source\repos\EssanAp5113N\programming_course_2\labs\lab13_linear_algebra\Lab13\src\lib\x86_64-win64\ -FEC:\Users\Sabit\source\repos\EssanAp5113N\programming_course_2\labs\lab13_linear_algebra\Lab13\src\ -oC:\Users\Sabit\source\repos\EssanAp5113N\programming_course_2\labs\lab13_linear_algebra\Lab13\src\project1.exe -dLCL -dLCLwin32 project1.lpr"/>
+  <Complete Value="False"/>
+</CONFIG>
