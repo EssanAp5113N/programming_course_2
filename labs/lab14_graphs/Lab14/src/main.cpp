@@ -1,5 +1,7 @@
 #include <iostream>
 #include <fstream>
+#include <string>
+#include <vector>
 using namespace std;
 
 void MatSmech() {
@@ -87,6 +89,7 @@ void Spicok() {
         k = v2[i]; D[U[k]] = v1[i]; U[k]++;
     }
 
+    output << n << "\n";
     for (j = 0; j < n; j++) {
         output << L[j] << " ";
     }
@@ -112,7 +115,59 @@ void Spicok() {
 
 }
 
+void Rebra() {
+    ifstream input("Rez2.txt");
+    ofstream output("Rez3.txt");
+
+    int n;
+    int *L, *S, *D;
+
+    input >> n;
+    
+    L = new int[n];
+    S = new int[n];
+
+    for (int j = 0; j < n; j++) {
+        input >> L[j];
+    }
+
+    for (int j = 0; j < n; j++) {
+        input >> S[j];
+    }
+
+    int sumL = 0;
+    for (int j = 0; j < n; j++) {
+        sumL += L[j];
+    }
+    int m = sumL / 2;
+
+    D = new int[2 * m];
+    for (int i = 0; i < 2 * m; i++) {
+        input >> D[i];
+    }
+    input.close();
+
+    output << n << "\n";
+    output << m << "\n";
+
+    for (int i = 0; i < n; i++) {
+        for (int j = S[i]; j < S[i] + L[i]; j++) {
+            int neighbor = D[j];
+            if (i < neighbor) {
+                output << i + 1<< " " << neighbor << "\n";
+            }
+        }
+    }
+
+    delete[] L;
+    delete[] S;
+    delete[] D;
+
+    output.close();
+}
+
 int main() {
     MatSmech();
     Spicok();
+    Rebra();
 }
