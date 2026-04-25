@@ -4,8 +4,18 @@
 #include <vector>
 using namespace std;
 
+int** M, i, j, n, k, * C, q;
+
+void cdeep(int k) {
+    for (int i = 0; i < n; i++) {
+        if (M[k][i] == 1 && C[i] == 0) {
+            C[i] = q;
+            cdeep(i);
+        }
+    }
+}
+
 void MatSmech() {
-    int** M, i, j, n, k;
     ifstream fin("Test.txt");
     ofstream fout("GenMat.txt");
 
@@ -25,14 +35,33 @@ void MatSmech() {
 
     fin.close();
 
+    C = new int[n];
+    for (int i = 0; i < n; i++) C[i] = 0;
 
-    for (i = 0; i < n; i++) {
-        for (j = 0; j < n; j++) {
-            fout << M[i][j];
-            fout << "  ";
+    q = 0;
+    for (int i = 0; i < n; i++) {
+        if (C[i] == 0) {
+            q++;
+            C[i] = q;
+            cdeep(i);  
         }
-        fout << "\n";
     }
+
+    fout << q << endl;
+
+    for (int t = 1; t <= q; t++) {
+        for (int i = 0; i < n; i++) {
+            if (C[i] == t) {
+                fout << i << " ";
+            }
+        }
+        fout << endl;
+    }
+
+    for (int i = 0; i < n; i++) delete[] M[i];
+    delete[] M;
+    delete[] C;
+
     fout.close();
 }
 
